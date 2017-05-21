@@ -1,0 +1,38 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <div class="center-all">
+
+    <img src="../../assets/icon/favicon.ico" class="center">
+
+    <h2 align="center" class="text-title">Login</h2>
+
+    <form>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="at" color="primary"></ion-icon>
+            E-Mail
+          </ion-label>
+          <ion-input type="email" name="email" [(ngModel)]="details.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="key" color="primary"></ion-icon>
+            Senha
+          </ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="details.password"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <button ion-button block color="butto-login" class="round-border-button" (click)="onClickSignIn()">Login</button>
+      <button ion-button block color="butto-register">Register</button>
+      <button ion-button block clear color="dark">Forget Password</button>
+      <button ion-button block medium color="butto-facebook" icon-left>
+        <ion-icon name="logo-facebook"></ion-icon>
+        Login in with facebook
+      </button>
+    </form>
+  </div>
+</ion-content>
