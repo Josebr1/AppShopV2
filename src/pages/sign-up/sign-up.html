@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>SignUp</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="color-background">
+  <ion-card>
+    <ion-card-content>
+      <form>
+        <ion-list>
+          <ion-item>
+            <ion-label floating>
+              <ion-icon name="contact" color="primary"></ion-icon>
+              Nome de Usuário
+            </ion-label>
+            <ion-input type="text" name="user-name" [(ngModel)]="detailsRegister.userName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>
+              <ion-icon name="person" color="primary"></ion-icon>
+              Nome completo
+            </ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="detailsRegister.fullName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>
+              <ion-icon name="call" color="primary"></ion-icon>
+              Telefone
+            </ion-label>
+            <ion-input type="tel" name="tel" [(ngModel)]="detailsRegister.tel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>
+              <ion-icon name="at" color="primary"></ion-icon>
+              E-Mail
+            </ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="detailsRegister.email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>
+              <ion-icon name="key" color="primary"></ion-icon>
+              Senha
+            </ion-label>
+            <ion-input type="password" name="password" [(ngModel)]="detailsRegister.password"></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button block color="butto-login" class="round-border-button" (click)="onClickSignUp()">
+          Register
+        </button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

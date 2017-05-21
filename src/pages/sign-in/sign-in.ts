@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {SignUpPage} from "../sign-up/sign-up";
 
 @IonicPage()
 @Component({
@@ -19,6 +20,14 @@ export class SignInPage {
   onClickSignIn(){
     console.log(this.details.email);
     console.log(this.details.password);
+  }
+
+  clickRegister(){
+    this.navCtrl.push(SignUpPage);
+  }
+
+  onClickSignUp(){
+
   }
 
   ionViewDidLoad() {
