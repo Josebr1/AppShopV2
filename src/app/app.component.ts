@@ -6,10 +6,11 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from '../pages/home/home';
 import {SignInPage} from "../pages/sign-in/sign-in";
 import {ServiceProvider} from "../providers/service/service";
+import {SharedCartServiceProvider} from "../providers/shared-cart-service/shared-cart-service";
 
 @Component({
   templateUrl: 'app.html',
-  providers: [ServiceProvider]
+  providers: [ServiceProvider, SharedCartServiceProvider]
 })
 export class MyApp {
 
@@ -23,10 +24,11 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
   /*
-  disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-    console.log('network was disconnected :-(');
-  });*/
+   disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+   console.log('network was disconnected :-(');
+   });*/
 
 }
 

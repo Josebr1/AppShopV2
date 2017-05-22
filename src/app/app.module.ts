@@ -15,6 +15,7 @@ import {AllCategoriesPage} from "../pages/all-categories/all-categories";
 import { ServiceProvider } from '../providers/service/service';
 import {CategoryPage} from "../pages/category/category";
 import {ProductDetailPage} from "../pages/product-detail/product-detail";
+import { SharedCartServiceProvider } from '../providers/shared-cart-service/shared-cart-service';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -54,7 +55,8 @@ const cloudSettings: CloudSettings = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServiceProvider
+    ServiceProvider,
+    SharedCartServiceProvider
   ]
 })
 export class AppModule {
