@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, Platform} from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {AllCategoriesPage} from "../all-categories/all-categories";
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ import {HomePage} from "../home/home";
 export class TabsPage {
 
   tabHome = HomePage;
+  tabList = AllCategoriesPage;
 
   isAndroid: boolean = false;
 

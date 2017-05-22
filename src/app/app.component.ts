@@ -5,9 +5,11 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from '../pages/home/home';
 import {SignInPage} from "../pages/sign-in/sign-in";
+import {ServiceProvider} from "../providers/service/service";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [ServiceProvider]
 })
 export class MyApp {
 
