@@ -33,7 +33,7 @@ export class CategoryPage implements OnInit {
     });
 
     loader.present();
-    let url = "http://localhost:8000/product/category/";
+    let url = "http://appshopv2.etprogramador.ga/public/product/category/";
     let idCategory = this.navParams.get('idCategory');
     return this.http.get(url + idCategory).map(res => res.json()).subscribe(
       data => {

@@ -32403,6 +32403,26 @@ ion-navbar.toolbar {
   }
 }
 
+page-shopping-cart .center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+page-shopping-cart .button-cart {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  display: block;
+}
+
+page-shopping-cart .fab[mini] {
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  line-height: 40px;
+}
+
 page-sign-in .center {
   margin-left: auto;
   margin-right: auto;

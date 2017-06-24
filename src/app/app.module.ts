@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
 import { HttpModule } from '@angular/http';
+import { AppMaskerModule } from 'brmasker-ionic';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
@@ -16,6 +17,8 @@ import { ServiceProvider } from '../providers/service/service';
 import {CategoryPage} from "../pages/category/category";
 import {ProductDetailPage} from "../pages/product-detail/product-detail";
 import { SharedCartServiceProvider } from '../providers/shared-cart-service/shared-cart-service';
+import {ShoppingCartPage} from "../pages/shopping-cart/shopping-cart";
+import {VerifyZipCodePage} from "../pages/verify-zip-code/verify-zip-code";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -32,11 +35,14 @@ const cloudSettings: CloudSettings = {
     TabsPage,
     AllCategoriesPage,
     CategoryPage,
-    ProductDetailPage
+    ProductDetailPage,
+    ShoppingCartPage,
+    VerifyZipCodePage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    AppMaskerModule,
     IonicModule.forRoot(MyApp),
     CloudModule.forRoot(cloudSettings)
   ],
@@ -49,7 +55,9 @@ const cloudSettings: CloudSettings = {
     TabsPage,
     AllCategoriesPage,
     CategoryPage,
-    ProductDetailPage
+    ProductDetailPage,
+    ShoppingCartPage,
+    VerifyZipCodePage
   ],
   providers: [
     StatusBar,

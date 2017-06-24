@@ -1,7 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage, Platform} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {AllCategoriesPage} from "../all-categories/all-categories";
+import {SharedCartServiceProvider} from "../../providers/shared-cart-service/shared-cart-service";
+import {ShoppingCartPage} from "../shopping-cart/shopping-cart";
 
 @IonicPage()
 @Component({
@@ -9,14 +11,21 @@ import {AllCategoriesPage} from "../all-categories/all-categories";
   templateUrl: 'tabs.html',
 })
 
-export class TabsPage {
+export class TabsPage implements OnInit{
+
+  isAndroid: boolean = false;
+  totalItemsCart = 0;
+
+  constructor(platform: Platform, private cart:SharedCartServiceProvider) {
+    this.isAndroid = platform.is('android');
+
+  }
 
   tabHome = HomePage;
   tabList = AllCategoriesPage;
+  tabCart = ShoppingCartPage;
 
-  isAndroid: boolean = false;
+  ngOnInit(): void {
 
-  constructor(platform: Platform) {
-    this.isAndroid = platform.is('android');
   }
 }
