@@ -32403,6 +32403,24 @@ ion-navbar.toolbar {
   }
 }
 
+products-home .card-background-page .card-title {
+  font-size: 1.5em;
+  width: 100%;
+  font-weight: bold;
+  color: #db9115;
+  margin: 5px;
+  text-align: center;
+}
+
+products-home .center-image {
+  margin: 0 auto;
+}
+
+page-home .center-image {
+  margin: 0 auto;
+  height: 200px;
+}
+
 page-shopping-cart .center {
   margin-left: auto;
   margin-right: auto;

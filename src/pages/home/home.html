@@ -1,14 +1,32 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Home
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+
+  <div style="">
+    <ion-slides>
+      <ion-slide *ngFor="let slide of response">
+        <ion-card>
+          <img class="center-image"
+               src="http://localhost/Shop/{{slide.icon}}" (click)="onClickCategory(slide.id_category, slide.name)"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{slide.name}}
+            </ion-card-title>
+            <p>
+              {{slide.description}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <products-home></products-home>
+
 </ion-content>

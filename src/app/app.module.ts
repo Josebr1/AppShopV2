@@ -22,6 +22,7 @@ import {VerifyZipCodePage} from "../pages/verify-zip-code/verify-zip-code";
 import {UserUtilProvider} from '../providers/user-util/user-util';
 import {Toast} from "@ionic-native/toast";
 import {IonicStorageModule} from '@ionic/storage';
+import { ProductsHomeComponent } from '../components/products-home/products-home';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -40,7 +41,8 @@ const cloudSettings: CloudSettings = {
     CategoryPage,
     ProductDetailPage,
     ShoppingCartPage,
-    VerifyZipCodePage
+    VerifyZipCodePage,
+    ProductsHomeComponent
   ],
   imports: [
     BrowserModule,
