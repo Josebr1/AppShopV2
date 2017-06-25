@@ -33,6 +33,12 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "io.ionic.starter"
         }
     },
     "dependent_plugins": {

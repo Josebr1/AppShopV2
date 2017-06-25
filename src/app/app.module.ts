@@ -4,8 +4,8 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
-import { HttpModule } from '@angular/http';
-import { AppMaskerModule } from 'brmasker-ionic';
+import {HttpModule} from '@angular/http';
+import {AppMaskerModule} from 'brmasker-ionic';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
@@ -13,12 +13,15 @@ import {SignInPage} from "../pages/sign-in/sign-in";
 import {SignUpPage} from "../pages/sign-up/sign-up";
 import {TabsPage} from "../pages/tabs/tabs";
 import {AllCategoriesPage} from "../pages/all-categories/all-categories";
-import { ServiceProvider } from '../providers/service/service';
+import {ServiceProvider} from '../providers/service/service';
 import {CategoryPage} from "../pages/category/category";
 import {ProductDetailPage} from "../pages/product-detail/product-detail";
-import { SharedCartServiceProvider } from '../providers/shared-cart-service/shared-cart-service';
+import {SharedCartServiceProvider} from '../providers/shared-cart-service/shared-cart-service';
 import {ShoppingCartPage} from "../pages/shopping-cart/shopping-cart";
 import {VerifyZipCodePage} from "../pages/verify-zip-code/verify-zip-code";
+import {UserUtilProvider} from '../providers/user-util/user-util';
+import {Toast} from "@ionic-native/toast";
+import {IonicStorageModule} from '@ionic/storage';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -44,7 +47,8 @@ const cloudSettings: CloudSettings = {
     HttpModule,
     AppMaskerModule,
     IonicModule.forRoot(MyApp),
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,9 +66,11 @@ const cloudSettings: CloudSettings = {
   providers: [
     StatusBar,
     SplashScreen,
+    Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServiceProvider,
-    SharedCartServiceProvider
+    SharedCartServiceProvider,
+    UserUtilProvider,
   ]
 })
 export class AppModule {
