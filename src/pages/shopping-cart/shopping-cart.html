@@ -1,68 +1,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ShoppingCart</ion-title>
+    <ion-title>Carrinho de compras</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content>
 
-  <div *ngFor="let item of cartItems">
-    <ion-card>
-      <ion-card-header>
-        {{item.cart_item_name}}
-      </ion-card-header>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <p>{{item.cart_item_desc}}</p>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            <div>Valor Unitário: R${{item.cart_item_price}}</div>
-          </ion-col>
-          <ion-col>
-            <div>
-              <button ion-fab mini color="danger" (click)="decrementProduct(item.cart_item_id)">
-                <ion-icon name="remove"></ion-icon>
-              </button>
-            </div>
-          </ion-col>
-          <div style="margin: auto">
-            {{item.cart_item_quantity}}
-          </div>
-          <ion-col>
-            <div>
-              <button ion-fab mini color="secondary" class="center" (click)="incrementProduct(item.cart_item_id)">
-                <ion-icon name="add"></ion-icon>
-              </button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
+  <div *ngIf="isShow(); then cart else cartNull">
+    {{isShow()}}
   </div>
 
-  <ion-card>
-    <ion-card-header>
-      Total do pedido
-    </ion-card-header>
+  <template #cartNull>
+    <cart-null-home></cart-null-home>
+  </template>
 
-    <ion-card-content>
-      <div>
-        <p>Total ( {{cart.totalAquantity}} ) =
-          <strong>R${{cart.totalAmount}}</strong>
-        </p>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-
-
-  <button ion-button (click)="onVerifyCode()">Prosseguir com a compra</button>
+  <template #cart>
+    <cart-home></cart-home>
+  </template>
 
 </ion-content>
+
+

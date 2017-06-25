@@ -23,6 +23,8 @@ import {UserUtilProvider} from '../providers/user-util/user-util';
 import {Toast} from "@ionic-native/toast";
 import {IonicStorageModule} from '@ionic/storage';
 import { ProductsHomeComponent } from '../components/products-home/products-home';
+import { CartHomeComponent } from '../components/cart-home/cart-home';
+import { CartNullHomeComponent } from '../components/cart-null-home/cart-null-home';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -42,7 +44,9 @@ const cloudSettings: CloudSettings = {
     ProductDetailPage,
     ShoppingCartPage,
     VerifyZipCodePage,
-    ProductsHomeComponent
+    ProductsHomeComponent,
+    CartHomeComponent,
+    CartNullHomeComponent
   ],
   imports: [
     BrowserModule,
