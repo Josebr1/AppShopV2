@@ -68,6 +68,14 @@ export class CategoryPage implements OnInit {
     })
   }
 
+  isShow(){
+    if(this.categoryProducts == null){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoryPage');
   }

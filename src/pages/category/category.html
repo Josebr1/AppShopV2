@@ -15,23 +15,34 @@
 
 <ion-content padding>
 
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
+  <div *ngIf="isShow(); then category else networking">
+    {{isShow()}}
+  </div>
 
-  <ion-list>
-    <ion-item *ngFor="let item of categoryProducts" (click)="onClickProductDetail(item.id_product, item.name)">
-      <ion-thumbnail item-left>
-        <img src="{{item.product_image}}">
-      </ion-thumbnail>
-      <h2>{{item.name}}</h2>
-      <p>{{item.description}}</p>
-      <p><strong>R$</strong> {{item.price}}</p>
-    </ion-item>
-  </ion-list>
+  <template #category>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+      <ion-item *ngFor="let item of categoryProducts" (click)="onClickProductDetail(item.id_product, item.name)">
+        <ion-thumbnail item-left>
+          <img src="{{item.product_image}}">
+        </ion-thumbnail>
+        <h2>{{item.name}}</h2>
+        <p>{{item.description}}</p>
+        <p><strong>R$</strong> {{item.price}}</p>
+      </ion-item>
+    </ion-list>
+  </template>
+
+  <template #networking>
+    <not-networking></not-networking>
+  </template>
+
 </ion-content>

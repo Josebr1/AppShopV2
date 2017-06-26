@@ -26,6 +26,7 @@ import { ProductsHomeComponent } from '../components/products-home/products-home
 import { CartHomeComponent } from '../components/cart-home/cart-home';
 import { CartNullHomeComponent } from '../components/cart-null-home/cart-null-home';
 import {UserPage} from "../pages/user/user";
+import { NotNetworkingComponent } from '../components/not-networking/not-networking';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -48,7 +49,8 @@ const cloudSettings: CloudSettings = {
     ProductsHomeComponent,
     CartHomeComponent,
     CartNullHomeComponent,
-    UserPage
+    UserPage,
+    NotNetworkingComponent
   ],
   imports: [
     BrowserModule,
