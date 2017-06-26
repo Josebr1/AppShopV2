@@ -32487,3 +32487,20 @@ page-sign-up .center-all {
 page-sign-up .color-background {
   background-color: #FFB74D;
 }
+
+page-user .background-user {
+  margin: 0;
+  background: #8c8c8c;
+  width: 100%;
+  height: 50%;
+  position: relative;
+}
+
+page-user .img-user {
+  top: 42%;
+  background: #007069;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 36%;
+}

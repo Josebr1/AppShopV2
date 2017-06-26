@@ -4,6 +4,7 @@ import {HomePage} from "../home/home";
 import {AllCategoriesPage} from "../all-categories/all-categories";
 import {SharedCartServiceProvider} from "../../providers/shared-cart-service/shared-cart-service";
 import {ShoppingCartPage} from "../shopping-cart/shopping-cart";
+import {UserPage} from "../user/user";
 
 @IonicPage()
 @Component({
@@ -24,6 +25,7 @@ export class TabsPage implements OnInit{
   tabHome = HomePage;
   tabList = AllCategoriesPage;
   tabCart = ShoppingCartPage;
+  tabUser = UserPage;
 
   ngOnInit(): void {
 

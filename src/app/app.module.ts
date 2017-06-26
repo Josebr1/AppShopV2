@@ -25,6 +25,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import { ProductsHomeComponent } from '../components/products-home/products-home';
 import { CartHomeComponent } from '../components/cart-home/cart-home';
 import { CartNullHomeComponent } from '../components/cart-null-home/cart-null-home';
+import {UserPage} from "../pages/user/user";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -46,7 +47,8 @@ const cloudSettings: CloudSettings = {
     VerifyZipCodePage,
     ProductsHomeComponent,
     CartHomeComponent,
-    CartNullHomeComponent
+    CartNullHomeComponent,
+    UserPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ const cloudSettings: CloudSettings = {
     CategoryPage,
     ProductDetailPage,
     ShoppingCartPage,
-    VerifyZipCodePage
+    VerifyZipCodePage,
+    UserPage
   ],
   providers: [
     StatusBar,
