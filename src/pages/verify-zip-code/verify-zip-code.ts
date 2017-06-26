@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AlertController, App, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {Http} from "@angular/http";
 
 /**
  * Generated class for the VerifyZipCodePage page.
@@ -20,55 +21,47 @@ export class VerifyZipCodePage {
 
   cep: string = "";
   statusZip = "";
+  isOK = false;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(private http: Http,
               private loadingCtrl: LoadingController,
-              private alertCtrl: AlertController,
-              private app: App) {
+              private alertCtrl: AlertController) {
   }
 
   verifyZipCode() {
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando...'
+    });
+    loading.present();
     console.log(this.cep != null);
+    let url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins='Etec da zona leste'" + "|&destinations=" + this.cep + "&mode=CAR|&language=PT|&sensor=false";
 
-    if (this.cep.length >= 9) {
-      try {
-        var service = new google.maps.DistanceMatrixService();
-        service.getDistanceMatrix({
-          origins: [this.cep],
-          destinations: ["Etec da zona leste"],
-          travelMode: google.maps.TravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.METRIC
-        }, this.callback);
+    return this.http.get(url).map(res => res.json()).subscribe(
+      data => {
+        console.log(data.rows[0].elements[0].status);
+        if (data.rows[0].elements[0].status != "OK") {
+          this.showAlert("Atenção", "CEP incorreto");
+          loading.dismiss();
+        } else {
+          console.log(data.rows[0].elements[0].distance.text);
+          var kmString = data.rows[0].elements[0].distance.text;
+          var km = kmString.replace("km", "");
 
-        console.log(this.statusZip);
-
-      } catch (err) {
-
+          if (parseInt(km) <= 10) {
+            this.showAlert("", "");
+          } else {
+            this.showAlert("Atenção", "Infelizmente o endereço de entrega não se encontra no limite especificado :)");
+          }
+          console.log(km);
+          loading.dismiss();
+        }
+      },
+      err => {
+        console.log(err + "Não foi possível acessar a internet");
+        loading.dismiss();
       }
-    } else {
-      this.showAlert("", "");
-    }
+    );
   }
-
-  callback(response, status) {
-    try{
-      var kmString = response.rows[0].elements[0].distance.text;
-      var km = kmString.replace("km", "");
-      console.log(km);
-
-      if (status != google.maps.DistanceMatrixStatus.OK) {
-        console.log("Error");
-      } else {
-        this.statusZip = km;
-        console.log(parseInt(km) <= 10.00);
-      }
-    }catch (err){
-
-    }
-
-  }
-
 
   showAlert(title, msg) {
     let alert = this.alertCtrl.create({
@@ -77,11 +70,9 @@ export class VerifyZipCodePage {
       buttons: ['OK']
     });
     alert.present();
-
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerifyZipCodePage');
   }
-
 }
