@@ -7,7 +7,7 @@ import {ToastController} from 'ionic-angular';
 export class SharedCartServiceProvider {
 
   cart = [];
-  totalAmount:number = 0;
+  totalAmount:number = parseFloat('0.00');
   totalAquantity: number = 0;
 
 
@@ -17,7 +17,7 @@ export class SharedCartServiceProvider {
 
   addProductCart(id:number, image:string, name:string, desc:string, price, quantity:number) {
     if (this.find(id) !== -1) {
-      this.presentToast("Produto já se encontra no carrinho de compras ", 3000);
+      this.presentToast("Produto já se encontra no carrinho de compras ", 1000);
     } else {
       this.cart.push({
         "cart_item_id": id,
@@ -29,7 +29,7 @@ export class SharedCartServiceProvider {
       });
       this.totalAquantity += 1;
       this.totalAmount += parseFloat(price);
-      this.presentToast("Produto adicionado ao carrinho de compras", 3000)
+      this.presentToast("Produto adicionado ao carrinho de compras", 1000)
     }
   }
 
@@ -65,6 +65,13 @@ export class SharedCartServiceProvider {
       this.cart.splice(this.find(id), 1);
     } else {
       this.cart[this.find(id)].cart_item_quantity -= 1;
+    }
+  }
+
+  clear(){
+    for(var i = 0; i < this.cart.length; i++){
+      this.drop(this.cart[i].cart_item_id);
+      console.log(i);
     }
   }
 

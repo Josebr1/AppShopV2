@@ -29,6 +29,12 @@ import {UserPage} from "../pages/user/user";
 import { NotNetworkingComponent } from '../components/not-networking/not-networking';
 import {PasswordResetPage} from "../pages/password-reset/password-reset";
 import {ComfirmPasswordResetPage} from "../pages/comfirm-password-reset/comfirm-password-reset";
+import {ChoosePaymentMethodPage} from "../pages/choose-payment-method/choose-payment-method";
+import {PaymentFormPage} from "../pages/payment-form/payment-form";
+import { PaymentFormOnlineComponent } from '../components/payment-form-online/payment-form-online';
+import { PaymentFormDeliveryComponent } from '../components/payment-form-delivery/payment-form-delivery';
+import {OrderHistoryPage} from "../pages/order-history/order-history";
+import {SearchPage} from "../pages/search/search";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -54,7 +60,13 @@ const cloudSettings: CloudSettings = {
     UserPage,
     NotNetworkingComponent,
     PasswordResetPage,
-    ComfirmPasswordResetPage
+    ComfirmPasswordResetPage,
+    ChoosePaymentMethodPage,
+    PaymentFormPage,
+    PaymentFormOnlineComponent,
+    PaymentFormDeliveryComponent,
+    OrderHistoryPage,
+    SearchPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +90,11 @@ const cloudSettings: CloudSettings = {
     VerifyZipCodePage,
     UserPage,
     PasswordResetPage,
-    ComfirmPasswordResetPage
+    ComfirmPasswordResetPage,
+    ChoosePaymentMethodPage,
+    PaymentFormPage,
+    OrderHistoryPage,
+    SearchPage
   ],
   providers: [
     StatusBar,

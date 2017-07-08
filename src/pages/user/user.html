@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>User</ion-title>
+    <ion-title>{{detailsUser.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,12 +10,35 @@
 <ion-content>
 
   <div class="background-user">
-
+    <img src="assets/icon/ic_background.jpg" style="height: 100%; width: 100%;">
   </div>
 
   <div class="img-user">
-
+      <img src="{{detailsUser.photo}}" style="width: 100%; height: 100%;">
   </div>
 
 
+  <ion-list style="margin-top: 20vw">
+    <ion-item>
+      <ion-avatar item-start>
+        <ion-icon name="contact"></ion-icon>
+      </ion-avatar>
+      <h2>Informações da conta</h2>
+      <p>{{detailsUser.email}}</p>
+    </ion-item>
+
+    <ion-item (click)="onClickOrderHistory()">
+      <ion-avatar item-start>
+        <ion-icon name="list-box"></ion-icon>
+      </ion-avatar>
+      <h2>Ver o histórico de compras</h2>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
+
+<ion-footer>
+
+  <button ion-button full class="full-button round-border-button" color="butto-login" color="danger" (click)="onClickLogout()">Sair</button>
+
+</ion-footer>

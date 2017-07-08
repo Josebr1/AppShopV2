@@ -1,9 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="onClickSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
@@ -13,7 +17,7 @@
       <ion-slide *ngFor="let slide of response">
         <ion-card>
           <img class="center-image"
-               src="http://localhost/Shop/{{slide.icon}}" (click)="onClickCategory(slide.id_category, slide.name)"/>
+               src="http://site.files-app.ga/{{slide.icon}}" (click)="onClickCategory(slide.id_category, slide.name)"/>
           <ion-card-content>
             <ion-card-title>
               {{slide.name}}

@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="card-background-page">
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -18,26 +18,10 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div *ngFor="let item of allCategories" (click)="onClickCategory(item.id_category, item.name)"
-       style="margin-left: 0; margin-right: 0">
-    <ion-card style="width: 100%; background-color: #2d4373; margin: 0;">
-      <ion-card-content>
 
-        <div style="position: relative;">
-          <img src="http://localhost/Shop/{{item.icon}}" style="margin: auto; width: 50vw; height: 50vw;">
-
-          <!--div style="left: 50%;
-  margin-left: -100px;
-  position: absolute;
-  width: 200px; ">
-            <h2>{{item.name}}</h2>
-          </div -->
-
-        </div>
-
-
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ion-card *ngFor="let item of allCategories" (click)="onClickCategory(item.id_category, item.name)">
+    <img class="card-img" src="http://site.files-app.ga/{{item.icon}}"/>
+    <div class="card-title">{{item.name}}</div>
+  </ion-card>
 
 </ion-content>

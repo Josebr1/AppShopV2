@@ -1,0 +1,101 @@
+<!-- Generated template for the PaymentFormDeliveryComponent component -->
+<ion-content>
+  <form [formGroup]="finishPayment">
+
+    <ion-card>
+
+      <ion-list>
+        <ion-item-divider color="light">Informações de pagamento</ion-item-divider>
+
+        <ion-item>
+          <ion-input type="text" name="number" placeholder="Número do cartão" formControlName="numberCard" [(ngModel)]="card.numberCard" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="text" name="name" placeholder="Nome do titular do cartão" formControlName="name" [(ngModel)]="card.name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Mês</ion-label>
+          <ion-datetime displayFormat="YY" min="2001" max="2012" formControlName="month" [(ngModel)]="card.month"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Ano</ion-label>
+          <ion-datetime displayFormat="YYYY" formControlName="year" [(ngModel)]="card.year"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="text" name="cvv" placeholder="CVV" formControlName="cvv" [(ngModel)]="card.cvv"></ion-input>
+        </ion-item>
+
+      </ion-list>
+      <br>
+    </ion-card>
+
+    <ion-card>
+      <ion-list>
+        <ion-item-divider color="light">Endereço de entrega</ion-item-divider>
+
+        <ion-item>
+          <ion-label floating>
+            Rua
+          </ion-label>
+          <ion-input type="text" name="street" formControlName="street" [(ngModel)]="details.street"
+                     [disabled]="true"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>
+            N°
+          </ion-label>
+          <ion-input type="text" name="number" formControlName="number" [(ngModel)]="details.number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>
+            Bairro
+          </ion-label>
+          <ion-input type="text" name="neighborhood" formControlName="neighborhood"
+                     [(ngModel)]="details.neighborhood" [disabled]="true"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>
+            CEP
+          </ion-label>
+          <ion-input type="text" name="code" formControlName="code" [(ngModel)]="details.code"
+                     [disabled]="true"></ion-input>
+        </ion-item>
+      </ion-list>
+      <br>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-icon name="cart"></ion-icon>
+        Pedido
+      </ion-card-header>
+      <ion-card-content>
+
+        <p>Total</p>
+        <strong style="color: #0d860d">R$ {{ cart.totalAmount | number : '2.2-2' }}</strong>
+
+        <div style="height: 5vw"></div>
+
+        <ion-list>
+          <strong>Itens do pedido</strong>
+          <ion-item *ngFor="let items of shoppingCart">
+            {{items.cart_item_name}} x{{items.cart_item_quantity}}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <button ion-button full class="full-button round-border-button" color="butto-login" type="submit"
+           (click)="onClickFinishPayment()" [disabled]="!finishPayment.valid">
+    Realizar compra
+  </button>
+</ion-footer>

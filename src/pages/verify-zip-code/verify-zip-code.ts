@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {AlertController, App, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
+import {ChoosePaymentMethodPage} from "../choose-payment-method/choose-payment-method";
 
 /**
  * Generated class for the VerifyZipCodePage page.
@@ -23,7 +24,9 @@ export class VerifyZipCodePage {
   statusZip = "";
   isOK = false;
 
-  constructor(private http: Http,
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private http: Http,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController) {
   }
@@ -48,7 +51,10 @@ export class VerifyZipCodePage {
           var km = kmString.replace("km", "");
 
           if (parseInt(km) <= 10) {
-            this.showAlert("", "");
+           // this.showAlert("", "");
+            this.navCtrl.push(ChoosePaymentMethodPage, {
+              zipCode: this.cep
+            });
           } else {
             this.showAlert("Atenção", "Infelizmente o endereço de entrega não se encontra no limite especificado :)");
           }

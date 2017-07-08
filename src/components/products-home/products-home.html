@@ -1,11 +1,16 @@
-<ion-grid class="card-background-page">
-  <ion-row>
-    <ion-col col-6 *ngFor="let product of products" (click)="onClickProductDetail(product.id_product, product.name)">
-      <ion-card>
-        <img class="center-image" src="http://localhost/Shop/{{product.product_image}}"/>
-        <div class="card-title">{{product.name}}</div>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-card>
+  <ion-card-header>
+    Principais produtos
+  </ion-card-header>
+  <ion-list>
+    <ion-item *ngFor="let product of products" (click)="onClickProductDetail(product.id_product, product.name)">
+      <ion-thumbnail item-start>
+        <img src="http://site.files-app.ga/{{product.product_image}}">
+      </ion-thumbnail>
+      <h2>{{product.name}}</h2>
+      <p>{{product.price}}</p>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
 

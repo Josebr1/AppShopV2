@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AlertController, App, LoadingController, NavController, Slides} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {CategoryPage} from "../category/category";
+import {SearchPage} from "../search/search";
 
 @Component({
   selector: 'page-home',
@@ -33,7 +34,7 @@ export class HomePage implements OnInit {
     });
 
     loader.present();
-    let url = "http://localhost:8000/category/home/slide";
+    let url = "http://web-api.files-app.ga/public/category/home/slide";
     return this.http.get(url).map(res => res.json()).subscribe(
       data => {
         if (!data) {
@@ -49,6 +50,10 @@ export class HomePage implements OnInit {
         this.showAlert();
       }
     );
+  }
+
+  onClickSearch(){
+    this.app.getRootNav().push(SearchPage);
   }
 
   showAlert() {

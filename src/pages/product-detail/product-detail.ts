@@ -26,8 +26,7 @@ export class ProductDetailPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getService("http://localhost:8000/product/", this.navParams.get('idProduct'), "product");
-    this.getService("http://localhost:8000/commentary/product/", this.navParams.get('idProduct'), "commentary");
+    this.getService("http://web-api.files-app.ga/public/product/", this.navParams.get('idProduct'), "product");
   }
 
   getService(url, id, object) {
@@ -44,9 +43,6 @@ export class ProductDetailPage implements OnInit {
         } else {
           if (object == "product") {
             this.productDetails = data;
-          }
-          if (object == "commentary") {
-            this.productCommentary = data;
           }
           loader.dismiss();
         }
@@ -68,38 +64,10 @@ export class ProductDetailPage implements OnInit {
   }
 
   doRefresh(refresher) {
-    this.getService("http://localhost:8000/product/", this.navParams.get('idProduct'), "product");
-    this.getService("http://localhost:8000/commentary/product/", this.navParams.get('idProduct'), "commentary");
+    this.getService("http://web-api.files-app.ga/public/product/", this.navParams.get('idProduct'), "product");
     refresher.complete();
   }
 
-  presentPrompt() {
-    let alert = this.alertCtrl.create({
-      title: 'Comentário',
-      inputs: [
-        {
-          name: 'commentaryText',
-          placeholder: 'Deixe sua opinião'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Salvar',
-          handler: data => {
-            console.log('Cancel Salvar');
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
 
   onClickProductCart(id:number, image:string, name:string, desc:string, price:number, quantity:number) {
     this.cart.addProductCart(id, image, name, desc, price, quantity);

@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pesquisa pelo nome do produto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <form [formGroup]="searchForm">
+    <ion-searchbar [(ngModel)]="searchValue" formControlName="searchValue"></ion-searchbar>
+
+    <ion-list>
+      <ion-item *ngFor="let item of getproducts" (click)="onClickProductDetail(item.id_product, item.name)">
+        <ion-thumbnail item-left>
+          <img src="http://site.files-app.ga/{{item.product_image}}">
+        </ion-thumbnail>
+        <h2>{{item.name}}</h2>
+        <p>{{item.description}}</p>
+        <p><strong>R$</strong> {{item.price}}</p>
+      </ion-item>
+    </ion-list>
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button full class="full-button round-border-button" color="butto-login" type="submit"
+          (click)="getService()" [disabled]="!searchForm.valid">
+    Pesquisar
+  </button>
+</ion-footer>

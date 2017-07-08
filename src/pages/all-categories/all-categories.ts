@@ -32,7 +32,7 @@ export class AllCategoriesPage implements OnInit {
     });
 
     loader.present();
-    let url = "http://localhost:8000/category";
+    let url = "http://web-api.files-app.ga/public/category";
     return this.http.get(url).map(res => res.json()).subscribe(
       data => {
         if (!data) {

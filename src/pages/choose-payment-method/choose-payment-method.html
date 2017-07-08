@@ -1,0 +1,45 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pagamento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list radio-group [(ngModel)]="formMethod">
+    <ion-item-divider color="light">Pagamento online</ion-item-divider>
+    <ion-item>
+      <ion-label>Cartão de crédito</ion-label>
+      <ion-radio value="CREDIT_ONLINE" checked></ion-radio>
+    </ion-item>
+
+    <ion-item-divider color="light">Pagamento na entrega</ion-item-divider>
+    <ion-item>
+      <ion-label>Cartão de crédito</ion-label>
+      <ion-radio value="PAYMENT_ON_TIME_CREDIT"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cartão de débito</ion-label>
+      <ion-radio value="PAYMENT_ON_TIME_DEBIT"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Dinheiro</ion-label>
+      <ion-radio value="PAYMENT_ON_TIME_MONEY"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button full class="full-button" class="full-button" icon-right (click)="onClickPaymentNext()">
+    Continuar Compra
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+  </button>
+</ion-footer>
+

@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pedido</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div *ngIf="isShow(); then online else devilery">
+    {{isShow()}}
+  </div>
+
+  <template #online>
+    <payment-form-online></payment-form-online>
+  </template>
+
+  <template #devilery>
+    <payment-form-delivery></payment-form-delivery>
+  </template>
+
+</ion-content>

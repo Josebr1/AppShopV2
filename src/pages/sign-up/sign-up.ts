@@ -30,10 +30,10 @@ export class SignUpPage {
     password: ""
   };
 
-  private signUp : FormGroup;
+  private signUp: FormGroup;
 
   constructor(public navCtrl: NavController,
-              private  auth: Auth,
+              private auth: Auth,
               private user: User,
               private http: Http,
               private loadingCtrl: LoadingController,
@@ -58,7 +58,12 @@ export class SignUpPage {
     loader.present();
 
 
-    let details: UserDetails = {'email': this.detailsRegister.email, 'password': this.detailsRegister.password};
+    let details = {
+      'email': this.detailsRegister.email,
+      'password': this.detailsRegister.password,
+      'name': this.detailsRegister.fullName,
+      'username': this.detailsRegister.userName
+    };
     let url = "http://web-api.files-app.ga/public/user";
     let params = {
       id_user: this.detailsRegister.userName,
@@ -90,7 +95,7 @@ export class SignUpPage {
   }
 
 
-  showAlert(msg:string) {
+  showAlert(msg: string) {
     let alert = this.alertCtrl.create({
       title: 'Atenção',
       subTitle: msg,

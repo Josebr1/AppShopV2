@@ -6,7 +6,7 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -17,35 +17,25 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
-    <ion-item *ngFor="let item of productDetails">
-      <ion-card style="width: 100%; margin: 0;">
-        <img src="{{item.product_image}}"/>
-        <ion-card-content>
-          <ion-card-title>
-            {{item.name}}
-          </ion-card-title>
-          <p>
-            {{item.description}}
-          </p>
-          <p><strong>R$ {{item.price}}</strong></p>
-          <button ion-button clear (click)="onClickProductCart(item.id_product, item.product_image, item.name, item.description, item.price, 1)">Comprar</button>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
 
-  <ion-card>
-    <ion-card-header>
-      Comentários
-    </ion-card-header>
+  <div *ngFor="let item of productDetails">
     <ion-list>
-      <ion-item *ngFor="let item of productCommentary">
-        <h2>{{item.name}}</h2>
-        <p>{{item.text_commentary}}</p>
+      <ion-item>
+        <ion-card style="width: 100%; margin: 0;">
+          <img src="http://site.files-app.ga/{{item.product_image}}"/>
+          <ion-card-content>
+          </ion-card-content>
+        </ion-card>
       </ion-item>
     </ion-list>
-    <button ion-button clear (click)="presentPrompt()">Deixar um comentário</button>
-  </ion-card>
 
+    <ion-item-group>
+      <ion-item-divider color="light">{{item.name}}</ion-item-divider>
+      <ion-item>{{item.description}}</ion-item>
+      <ion-item>R$ {{item.price}}</ion-item>
+    </ion-item-group>
+
+    <button ion-button clear (click)="onClickProductCart(item.id_product, item.product_image, item.name, item.description, item.price, 1)">Comprar</button>
+
+  </div>
 </ion-content>

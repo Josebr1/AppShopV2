@@ -1,4 +1,4 @@
-<ion-content>
+<ion-grid>
 
   <div *ngFor="let item of cartItems">
     <ion-card>
@@ -28,7 +28,7 @@
           </div>
           <ion-col>
             <div>
-              <button ion-fab mini color="secondary" class="center" (click)="incrementProduct(item.cart_item_id)">
+              <button ion-fab mini color="button-add-item" class="center" (click)="incrementProduct(item.cart_item_id)">
                 <ion-icon name="add"></ion-icon>
               </button>
             </div>
@@ -52,9 +52,12 @@
     </ion-card-content>
   </ion-card>
 
+</ion-grid>
 
-  <button ion-button block (click)="onVerifyCode()">Prosseguir com a compra</button>
 
-</ion-content>
+
+<ion-footer>
+  <button ion-button full class="full-button" (click)="onVerifyCode()" >Prosseguir com a compra</button>
+</ion-footer>
 
 
