@@ -45,7 +45,7 @@ export class SignUpPage {
       userName: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.required, Validators.maxLength(15), UserNameValidator.isValid])],
       name: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.required, Validators.maxLength(15)])],
       tel: ['', Validators.compose([PhoneValidator.isValid])],
-      email: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.required, Validators.maxLength(25), EmailValidator.isValid])],
+      email: ['', Validators.compose([Validators.required, Validators.minLength(3), EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.required, PasswordValidator.isValid])],
     });
 

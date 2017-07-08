@@ -32,7 +32,7 @@ export class PasswordResetPage implements OnInit {
               private auth: Auth) {
 
     this.resetPassword = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.required, Validators.maxLength(25), EmailValidator.isValid])]
+      email: ['', Validators.compose([Validators.required, Validators.minLength(3), EmailValidator.isValid])]
     });
 
   }

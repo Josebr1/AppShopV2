@@ -35,7 +35,7 @@ export class ProductsHomeComponent implements OnInit{
     });
 
     loader.present();
-    let url = "http://localhost:8000/product/home/products";
+    let url = "http://web-api.files-app.ga/public/product/home/products";
     return this.http.get(url).map(res => res.json()).subscribe(
       data => {
         if (!data) {
