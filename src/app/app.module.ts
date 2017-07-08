@@ -27,6 +27,8 @@ import { CartHomeComponent } from '../components/cart-home/cart-home';
 import { CartNullHomeComponent } from '../components/cart-null-home/cart-null-home';
 import {UserPage} from "../pages/user/user";
 import { NotNetworkingComponent } from '../components/not-networking/not-networking';
+import {PasswordResetPage} from "../pages/password-reset/password-reset";
+import {ComfirmPasswordResetPage} from "../pages/comfirm-password-reset/comfirm-password-reset";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -50,7 +52,9 @@ const cloudSettings: CloudSettings = {
     CartHomeComponent,
     CartNullHomeComponent,
     UserPage,
-    NotNetworkingComponent
+    NotNetworkingComponent,
+    PasswordResetPage,
+    ComfirmPasswordResetPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,9 @@ const cloudSettings: CloudSettings = {
     ProductDetailPage,
     ShoppingCartPage,
     VerifyZipCodePage,
-    UserPage
+    UserPage,
+    PasswordResetPage,
+    ComfirmPasswordResetPage
   ],
   providers: [
     StatusBar,

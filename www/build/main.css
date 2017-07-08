@@ -32403,6 +32403,29 @@ ion-navbar.toolbar {
   }
 }
 
+.color-background {
+  background-color: #FFB74D;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.center-all {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.space {
+  height: 5vw;
+}
+
 cart-null-home .center {
   margin-left: auto;
   margin-right: auto;
@@ -32456,21 +32479,6 @@ page-shopping-cart .fab[mini] {
   line-height: 40px;
 }
 
-page-sign-in .center {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-page-sign-in .center-all {
-  width: 300px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
 page-sign-in .text-title {
   color: #FFA000;
 }
@@ -32482,10 +32490,6 @@ page-sign-up .center-all {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-}
-
-page-sign-up .color-background {
-  background-color: #FFB74D;
 }
 
 page-user .background-user {

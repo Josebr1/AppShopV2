@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, LoadingController, NavController} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {SignUpPage} from "../sign-up/sign-up";
 import {Auth, User} from '@ionic/cloud-angular';
 import {IDetailedError} from "@ionic/cloud/dist/es5";
@@ -7,6 +7,10 @@ import {UserUtilProvider} from "../../providers/user-util/user-util";
 import {Toast} from '@ionic-native/toast';
 import {Http} from "@angular/http";
 import {TabsPage} from "../tabs/tabs";
+import {PasswordResetPage} from "../password-reset/password-reset";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {EmailValidator} from "../../validators/email";
+import {PasswordValidator} from "../../validators/password";
 
 @IonicPage()
 @Component({
@@ -14,20 +18,34 @@ import {TabsPage} from "../tabs/tabs";
   templateUrl: 'sign-in.html',
 })
 
-export class SignInPage {
+export class SignInPage implements OnInit {
+
   private details = {
     email: "",
     password: ""
   };
-  private linkAddUser = "http://localhost:8000/user";
+  private linkAddUser = "http://web-api.files-app.ga/public/user";
+  private signIn: FormGroup;
 
-  constructor(public navCtrl: NavController,
-              public auth: Auth,
-              public user: User,
+  constructor(private navCtrl: NavController,
+              private auth: Auth,
+              private user: User,
               private toast: Toast,
               private userUtil: UserUtilProvider,
               private http: Http,
+              private navParams: NavParams,
+              private formBuilder: FormBuilder,
+              private alertCtrl: AlertController,
               private loadingCtrl: LoadingController) {
+
+    this.signIn = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.required, Validators.maxLength(25), EmailValidator.isValid])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.required, PasswordValidator.isValid])],
+    });
+  }
+
+  ngOnInit(): void {
+    this.details.email = this.navParams.get('email');
   }
 
   onClickSignIn() {
@@ -61,22 +79,31 @@ export class SignInPage {
     loading.present();
 
     this.auth.login('facebook').then(() => {
-      var data = JSON.stringify({
+      let loader = this.loadingCtrl.create({
+        content: "Carregado...",
+      });
+      loader.present();
+
+      let data = {
         id_user: this.user.social.facebook.uid,
         name: this.user.social.facebook.data.full_name,
         email: this.user.social.facebook.data.email,
         photo_url: this.user.social.facebook.data.profile_picture
-      });
+      };
 
-      this.http.post(this.linkAddUser, data).subscribe(data => {
-        console.log(data);
-        this.userUtil.save(this.user.social.facebook.uid, this.user.social.facebook.data.full_name, this.user.social.facebook.data.email);
-        console.log("Usuario cadastrado com sucesso");
-        this.navCtrl.setRoot(TabsPage);
-      }, error => {
-        console.log("Erro ao cadastrar usuario" + error);
-      });
-
+      this.http.post(this.linkAddUser, data).map(res => res.json()).subscribe(
+        data => {
+          console.log(data);
+          loader.dismiss();
+          this.showAlert('Usuário cadastrado com sucesso!');
+          this.navCtrl.setRoot(TabsPage);
+        },
+        err => {
+          loader.dismiss();
+          console.log(err);
+          this.showAlert('Erro ao cadastrar usuário');
+        }
+      );
       loading.dismiss();
     }, (err: IDetailedError<String[]>) => {
       console.error(err);
@@ -86,6 +113,19 @@ export class SignInPage {
         }
       );
     });
+  }
+
+  showAlert(msg:string) {
+    let alert = this.alertCtrl.create({
+      title: 'Atenção',
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  onClickResetPassword() {
+    this.navCtrl.push(PasswordResetPage);
   }
 
   ionViewDidLoad() {
