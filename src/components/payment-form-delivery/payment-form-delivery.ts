@@ -11,6 +11,7 @@ import {SharedCartServiceProvider} from "../../providers/shared-cart-service/sha
 import {Auth, User} from "@ionic/cloud-angular";
 import {HomePage} from "../../pages/home/home";
 import {TabsPage} from "../../pages/tabs/tabs";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 /**
  * Generated class for the PaymentFormDeliveryComponent component.
@@ -35,7 +36,7 @@ export class PaymentFormDeliveryComponent implements OnInit{
     code: ''
   };
 
-  private urlOrder = "http://web-api.files-app.ga/public/order";
+  //private urlOrder = "http://web-api.files-app.ga/public/order";
 
   ngOnInit(): void {
     let loader = this.loadingCtrl.create({
@@ -63,6 +64,7 @@ export class PaymentFormDeliveryComponent implements OnInit{
   constructor(private http: Http,
               private auth: Auth,
               private user: User,
+              private urlServe:UrlServeProvider,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
               private formBuilder: FormBuilder,
@@ -115,7 +117,7 @@ export class PaymentFormDeliveryComponent implements OnInit{
         token_card: ''
       };
 
-      this.http.post(this.urlOrder, params).map(res => res.json()).subscribe(
+      this.http.post(this.urlServe.urlOrder, params).map(res => res.json()).subscribe(
         data => {
           console.log(data);
           this.cart.clear();

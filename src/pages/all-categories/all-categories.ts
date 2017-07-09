@@ -1,8 +1,9 @@
+///<reference path="../../providers/url-serve/url-serve.ts"/>
 import {Component, OnInit} from '@angular/core';
 import {IonicPage, LoadingController, AlertController, App} from 'ionic-angular';
-import {ServiceProvider} from "../../providers/service/service";
 import {Http} from "@angular/http";
 import {CategoryPage} from "../category/category";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 @IonicPage()
 @Component({
@@ -14,10 +15,10 @@ export class AllCategoriesPage implements OnInit {
 
   allCategories: Array<any>;
 
-  constructor(public service: ServiceProvider,
-              private http: Http,
+  constructor(private http: Http,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
+              public urlServe: UrlServeProvider,
               private app: App) {
   }
 
@@ -32,8 +33,8 @@ export class AllCategoriesPage implements OnInit {
     });
 
     loader.present();
-    let url = "http://web-api.files-app.ga/public/category";
-    return this.http.get(url).map(res => res.json()).subscribe(
+
+    return this.http.get(this.urlServe.urlListCategories).map(res => res.json()).subscribe(
       data => {
         if (!data) {
           this.showAlert();
@@ -62,6 +63,14 @@ export class AllCategoriesPage implements OnInit {
   doRefresh(refresher) {
     this.getService();
     refresher.complete();
+  }
+
+  isShow() {
+    if (this.allCategories == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onClickCategory(id, name) {

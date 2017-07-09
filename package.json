@@ -44,6 +44,7 @@
         "cordova-sqlite-storage": "^2.0.4",
         "ionic-angular": "3.2.1",
         "ionic-plugin-keyboard": "^2.2.1",
+        "ionic2-input-mask": "^0.18.6",
         "ionicons": "3.0.0",
         "node-sass": "^4.5.3",
         "rxjs": "5.1.1",

@@ -3,6 +3,7 @@ import {AlertController, IonicPage, LoadingController, NavController, NavParams}
 import {Http} from "@angular/http";
 import {SignInPage} from "../sign-in/sign-in";
 import {User} from "@ionic/cloud-angular";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 /**
  * Generated class for the OrderHistoryPage page.
@@ -20,6 +21,14 @@ export class OrderHistoryPage implements OnInit {
 
   private data: Array<any>;
 
+  constructor(public navCtrl: NavController,
+              private http: Http,
+              private user: User,
+              private urlServe : UrlServeProvider,
+              private loadingCtrl: LoadingController,
+              private alertCtrl: AlertController,) {
+  }
+
   ngOnInit(): void {
     let loader = this.loadingCtrl.create({
       content: "Carregado...",
@@ -30,7 +39,7 @@ export class OrderHistoryPage implements OnInit {
 
     console.log(userId);
 
-    this.http.get('http://web-api.files-app.ga/public/order/products/orders/' + userId).map(res => res.json()).subscribe(
+    this.http.get(this.urlServe.urlorderProductsOrders + userId).map(res => res.json()).subscribe(
       data => {
         console.log(data);
         loader.dismiss();
@@ -43,13 +52,6 @@ export class OrderHistoryPage implements OnInit {
       }
     );
 
-  }
-
-  constructor(public navCtrl: NavController,
-              private http: Http,
-              private user: User,
-              private loadingCtrl: LoadingController,
-              private alertCtrl: AlertController,) {
   }
 
   ionViewDidLoad() {

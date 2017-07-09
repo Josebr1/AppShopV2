@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {ChoosePaymentMethodPage} from "../choose-payment-method/choose-payment-method";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ZipCodeValidator} from "../../validators/zip-code";
+import {Directive} from 'ionic2-text-mask'
 
 /**
  * Generated class for the VerifyZipCodePage page.
@@ -17,18 +20,27 @@ declare var google;
   selector: 'page-verify-zip-code',
   templateUrl: 'verify-zip-code.html',
 })
+
+
 export class VerifyZipCodePage {
 
 
   cep: string = "";
   statusZip = "";
   isOK = false;
+  private zipCode: FormGroup;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               private http: Http,
               private loadingCtrl: LoadingController,
+              private formBuilder: FormBuilder,
               private alertCtrl: AlertController) {
+
+    this.zipCode = this.formBuilder.group({
+      cep: ['', Validators.compose([Validators.required, ZipCodeValidator.isValid])],
+    });
+
   }
 
   verifyZipCode() {

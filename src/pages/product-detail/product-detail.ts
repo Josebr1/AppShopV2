@@ -3,6 +3,8 @@ import {AlertController, App, IonicPage, LoadingController, NavController, NavPa
 import {Http} from "@angular/http";
 import {SharedCartServiceProvider} from "../../providers/shared-cart-service/shared-cart-service";
 import {TabsPage} from "../tabs/tabs";
+import {ShoppingCartPage} from "../shopping-cart/shopping-cart";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 @IonicPage()
 @Component({
@@ -21,12 +23,13 @@ export class ProductDetailPage implements OnInit {
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
               private app: App,
+              private urlServe : UrlServeProvider,
               private cart: SharedCartServiceProvider) {
     this.productName = navParams.get('name');
   }
 
   ngOnInit(): void {
-    this.getService("http://web-api.files-app.ga/public/product/", this.navParams.get('idProduct'), "product");
+    this.getService(this.urlServe.urlListProductsById, this.navParams.get('idProduct'), "product");
   }
 
   getService(url, id, object) {
@@ -64,14 +67,22 @@ export class ProductDetailPage implements OnInit {
   }
 
   doRefresh(refresher) {
-    this.getService("http://web-api.files-app.ga/public/product/", this.navParams.get('idProduct'), "product");
+    this.getService(this.urlServe.urlListProductsById, this.navParams.get('idProduct'), "product");
     refresher.complete();
+  }
+
+  isShow() {
+    if (this.productDetails == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 
   onClickProductCart(id:number, image:string, name:string, desc:string, price:number, quantity:number) {
     this.cart.addProductCart(id, image, name, desc, price, quantity);
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 
   ionViewDidLoad() {

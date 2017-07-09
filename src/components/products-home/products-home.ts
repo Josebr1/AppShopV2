@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Http} from "@angular/http";
 import {AlertController, App, LoadingController} from "ionic-angular";
 import {ProductDetailPage} from "../../pages/product-detail/product-detail";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 /**
  * Generated class for the ProductsHomeComponent component.
@@ -20,6 +21,7 @@ export class ProductsHomeComponent implements OnInit{
   constructor(private http: Http,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
+              private urlServe: UrlServeProvider,
               private app: App) {
   }
 
@@ -35,8 +37,8 @@ export class ProductsHomeComponent implements OnInit{
     });
 
     loader.present();
-    let url = "http://web-api.files-app.ga/public/product/home/products";
-    return this.http.get(url).map(res => res.json()).subscribe(
+    //let url = "http://web-api.files-app.ga/public/product/home/products";
+    return this.http.get(this.urlServe.urlProductHomeProducts).map(res => res.json()).subscribe(
       data => {
         if (!data) {
           this.showAlert();

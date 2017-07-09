@@ -3,6 +3,7 @@ import {AlertController, App, LoadingController, NavController, Slides} from 'io
 import {Http} from "@angular/http";
 import {CategoryPage} from "../category/category";
 import {SearchPage} from "../search/search";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 @Component({
   selector: 'page-home',
@@ -17,6 +18,7 @@ export class HomePage implements OnInit {
               private http: Http,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
+              private urlServe : UrlServeProvider,
               private app: App) {
   }
 
@@ -34,8 +36,8 @@ export class HomePage implements OnInit {
     });
 
     loader.present();
-    let url = "http://web-api.files-app.ga/public/category/home/slide";
-    return this.http.get(url).map(res => res.json()).subscribe(
+   // let url = "http://web-api.files-app.ga/public/category/home/slide";
+    return this.http.get(this.urlServe.urlcategoryHomeSlide).map(res => res.json()).subscribe(
       data => {
         if (!data) {
           this.showAlert();
@@ -63,6 +65,19 @@ export class HomePage implements OnInit {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  doRefresh(refresher) {
+    this.getSlide();
+    refresher.complete();
+  }
+
+  isShow() {
+    if (this.response == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onClickCategory(id, name) {

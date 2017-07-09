@@ -2,35 +2,51 @@
 <ion-content>
   <form [formGroup]="finishPayment">
 
-    <ion-card>
+    <ion-card s>
 
-      <ion-list>
-        <ion-item-divider color="light">Informações de pagamento</ion-item-divider>
+      <ion-card-header>
+        Informações de pagamento
+      </ion-card-header>
 
-        <ion-item>
-          <ion-input type="text" name="number" placeholder="Número do cartão" formControlName="numberCard" [(ngModel)]="card.numberCard" ></ion-input>
-        </ion-item>
+        <ion-list>
+          <ion-item>
+            <img src="assets/icon/ic_banner_bandeiras.png">
+          </ion-item>
 
-        <ion-item>
-          <ion-input type="text" name="name" placeholder="Nome do titular do cartão" formControlName="name" [(ngModel)]="card.name"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>Número do cartão</ion-label>
+            <ion-input type="text" name="number" formControlName="numberCard" [(ngModel)]="card.numberCard"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Mês</ion-label>
-          <ion-datetime displayFormat="YY" min="2001" max="2012" formControlName="month" [(ngModel)]="card.month"></ion-datetime>
-        </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>Nome do titular do cartão</ion-label>
+            <ion-input type="text" name="name" formControlName="name"  class="list-input-space" [(ngModel)]="card.name"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Ano</ion-label>
-          <ion-datetime displayFormat="YYYY" formControlName="year" [(ngModel)]="card.year"></ion-datetime>
-        </ion-item>
+          <ion-grid style="margin: 0 0 0 0">
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label color="primary" stacked class="list-input-space">Mês</ion-label>
+                  <ion-datetime displayFormat="YY" min="2001" max="2012" formControlName="month"
+                                [(ngModel)]="card.month"></ion-datetime>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label color="primary" stacked>Ano</ion-label>
+                  <ion-datetime displayFormat="YYYY" formControlName="year" max="2030" [(ngModel)]="card.year"></ion-datetime>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
-        <ion-item>
-          <ion-input type="text" name="cvv" placeholder="CVV" formControlName="cvv" [(ngModel)]="card.cvv"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>CVV</ion-label>
+            <ion-input type="text" name="cvv" formControlName="cvv" [(ngModel)]="card.cvv"></ion-input>
+          </ion-item>
 
-      </ion-list>
-      <br>
+        </ion-list>
     </ion-card>
 
     <ion-card>
@@ -95,7 +111,7 @@
 
 <ion-footer>
   <button ion-button full class="full-button round-border-button" color="butto-login" type="submit"
-           (click)="onClickFinishPayment()" [disabled]="!finishPayment.valid">
+          (click)="onClickFinishPayment()" [disabled]="!finishPayment.valid">
     Realizar compra
   </button>
 </ion-footer>

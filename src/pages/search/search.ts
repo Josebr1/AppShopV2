@@ -3,6 +3,7 @@ import {AlertController, App, IonicPage, LoadingController, NavController, NavPa
 import {Http} from "@angular/http";
 import {ProductDetailPage} from "../product-detail/product-detail";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 /**
  * Generated class for the SearchPage page.
@@ -27,6 +28,7 @@ export class SearchPage {
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
               private app: App,
+              private urlServe:UrlServeProvider,
               private formBuilder: FormBuilder) {
 
     this.searchForm = this.formBuilder.group({
@@ -45,8 +47,8 @@ export class SearchPage {
     });
 
     loader.present();
-    let url = "http://web-api.files-app.ga/public/product/name/" + this.searchValue;
-    return this.http.get(url).map(res => res.json()).subscribe(
+   // let url = "http://web-api.files-app.ga/public/product/name/" + this.searchValue;
+    return this.http.get(this.urlServe.urlProductName + this.searchValue).map(res => res.json()).subscribe(
       data => {
         if (data == "product not folder") {
           //this.showAlert();

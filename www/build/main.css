@@ -35515,6 +35515,10 @@ ion-navbar.toolbar {
   margin: 0 0 0 0;
 }
 
+.list-input-space {
+  margin-right: 2vw;
+}
+
 cart-null-home .center {
   margin-left: auto;
   margin-right: auto;

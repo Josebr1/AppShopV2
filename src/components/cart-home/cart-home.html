@@ -46,7 +46,7 @@
     <ion-card-content>
       <div>
         <p>Total ( {{cart.totalAquantity}} ) =
-          <strong>R${{cart.totalAmount}}</strong>
+          <strong>R$ {{ cart.totalAmount | number : '2.2-2' }}</strong>
         </p>
       </div>
     </ion-card-content>

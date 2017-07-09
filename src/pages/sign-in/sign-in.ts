@@ -11,6 +11,7 @@ import {PasswordResetPage} from "../password-reset/password-reset";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EmailValidator} from "../../validators/email";
 import {PasswordValidator} from "../../validators/password";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 @IonicPage()
 @Component({
@@ -24,7 +25,6 @@ export class SignInPage implements OnInit {
     email: "",
     password: ""
   };
-  private linkAddUser = "http://web-api.files-app.ga/public/user";
   private signIn: FormGroup;
 
   constructor(private navCtrl: NavController,
@@ -33,6 +33,7 @@ export class SignInPage implements OnInit {
               private toast: Toast,
               private userUtil: UserUtilProvider,
               private http: Http,
+              private urlServe : UrlServeProvider,
               private navParams: NavParams,
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
@@ -91,7 +92,7 @@ export class SignInPage implements OnInit {
         photo_url: this.user.social.facebook.data.profile_picture
       };
 
-      this.http.post(this.linkAddUser, data).map(res => res.json()).subscribe(
+      this.http.post(this.urlServe.urlAddUser, data).map(res => res.json()).subscribe(
         data => {
           console.log(data);
           loader.dismiss();

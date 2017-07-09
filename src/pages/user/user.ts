@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Auth, User} from "@ionic/cloud-angular";
 import {SignInPage} from "../sign-in/sign-in";
 import {OrderHistoryPage} from "../order-history/order-history";
@@ -24,7 +24,8 @@ export class UserPage implements OnInit {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private  auth: Auth,
-              private user: User) {
+              private user: User,
+  private app:App) {
   }
 
   ngOnInit(): void {
@@ -49,7 +50,9 @@ export class UserPage implements OnInit {
 
   onClickLogout() {
     this.auth.logout();
-    this.navCtrl.setRoot(SignInPage);
+    //this.navCtrl.rootNav.setRoot(SignInPage);
+    //this.navCtrl.rootNav.setRoot(IntroPage);
+    this.app.getRootNav().setRoot(SignInPage);
   }
 
 

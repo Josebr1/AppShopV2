@@ -12,25 +12,43 @@
 
 <ion-content>
 
-  <div style="">
-    <ion-slides>
-      <ion-slide *ngFor="let slide of response">
-        <ion-card>
-          <img class="center-image"
-               src="http://site.files-app.ga/{{slide.icon}}" (click)="onClickCategory(slide.id_category, slide.name)"/>
-          <ion-card-content>
-            <ion-card-title>
-              {{slide.name}}
-            </ion-card-title>
-            <p>
-              {{slide.description}}
-            </p>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Puxe para atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="isShow(); then home else networking">
+    {{isShow()}}
   </div>
 
-  <products-home></products-home>
+  <template #home>
+    <div>
+      <ion-slides>
+        <ion-slide *ngFor="let slide of response">
+          <ion-card>
+            <img class="center-image"
+                 src="{{urlServe.urlPhoto + slide.icon}}" (click)="onClickCategory(slide.id_category, slide.name)"/>
+            <ion-card-content>
+              <ion-card-title>
+                {{slide.name}}
+              </ion-card-title>
+              <p>
+                {{slide.description}}
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
 
+    <products-home></products-home>
+  </template>
+
+  <template #networking>
+    <not-networking></not-networking>
+  </template>
 </ion-content>

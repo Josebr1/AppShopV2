@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController} from 'ionic-angular';
-import {Auth, User, UserDetails, IDetailedError} from '@ionic/cloud-angular';
+import {Auth, User, IDetailedError} from '@ionic/cloud-angular';
 import {Http} from "@angular/http";
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {EmailValidator} from "../../validators/email";
@@ -8,6 +8,8 @@ import {PhoneValidator} from "../../validators/phone";
 import {PasswordValidator} from "../../validators/password";
 import {UserNameValidator} from "../../validators/user-name";
 import {SignInPage} from "../sign-in/sign-in";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
+import {Directive} from 'ionic2-text-mask'
 
 /**
  * Generated class for the SignUpPage page.
@@ -19,6 +21,7 @@ import {SignInPage} from "../sign-in/sign-in";
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',
+
 })
 export class SignUpPage {
 
@@ -36,6 +39,7 @@ export class SignUpPage {
               private auth: Auth,
               private user: User,
               private http: Http,
+              private urlServe: UrlServeProvider,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
               private formBuilder: FormBuilder) {
@@ -48,8 +52,9 @@ export class SignUpPage {
       email: ['', Validators.compose([Validators.required, Validators.minLength(3), EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.required, PasswordValidator.isValid])],
     });
-
   }
+
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   onClickSignUpAccountIonic() {
     let loader = this.loadingCtrl.create({
@@ -64,7 +69,7 @@ export class SignUpPage {
       'name': this.detailsRegister.fullName,
       'username': this.detailsRegister.userName
     };
-    let url = "http://web-api.files-app.ga/public/user";
+
     let params = {
       id_user: this.detailsRegister.userName,
       name: this.detailsRegister.fullName,
@@ -73,7 +78,7 @@ export class SignUpPage {
     };
 
     this.auth.signup(details).then(() => {
-      this.http.post(url, params).map(res => res.json()).subscribe(
+      this.http.post(this.urlServe.urlAddUser, params).map(res => res.json()).subscribe(
         data => {
           console.log(data);
           loader.dismiss();

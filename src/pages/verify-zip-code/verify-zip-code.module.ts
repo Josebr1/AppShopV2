@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
+import {Directive} from 'ionic2-text-mask'
 import { IonicPageModule } from 'ionic-angular';
 import { VerifyZipCodePage } from './verify-zip-code';
 

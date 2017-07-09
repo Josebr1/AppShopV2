@@ -35,6 +35,9 @@ import { PaymentFormOnlineComponent } from '../components/payment-form-online/pa
 import { PaymentFormDeliveryComponent } from '../components/payment-form-delivery/payment-form-delivery';
 import {OrderHistoryPage} from "../pages/order-history/order-history";
 import {SearchPage} from "../pages/search/search";
+import { UrlServeProvider } from '../providers/url-serve/url-serve';
+import { MaskDirective } from '../directives/mask/mask';
+import {Directive} from 'ionic2-text-mask';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -66,7 +69,8 @@ const cloudSettings: CloudSettings = {
     PaymentFormOnlineComponent,
     PaymentFormDeliveryComponent,
     OrderHistoryPage,
-    SearchPage
+    SearchPage,
+    MaskDirective,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,7 @@ const cloudSettings: CloudSettings = {
     AppMaskerModule,
     IonicModule.forRoot(MyApp),
     CloudModule.forRoot(cloudSettings),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -104,6 +108,8 @@ const cloudSettings: CloudSettings = {
     ServiceProvider,
     SharedCartServiceProvider,
     UserUtilProvider,
+    UrlServeProvider,
+    MaskDirective,
   ]
 })
 export class AppModule {

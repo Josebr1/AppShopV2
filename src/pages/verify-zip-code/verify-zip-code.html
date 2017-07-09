@@ -1,29 +1,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Verificar codigo postal</ion-title>
+    <ion-title>Verificar código postal</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-list-header>
-      <ion-icon name="locate"></ion-icon>
-      Endereço de entrega
-    </ion-list-header>
+  <form [formGroup]="zipCode">
+    <ion-list>
+      <ion-list-header>
+        <ion-icon name="locate"></ion-icon>
+        Endereço de entrega
+      </ion-list-header>
       <ion-item>
         <ion-label>CEP</ion-label>
-        <ion-input type="text" [brmasker]="{mask:'00000-000', len:9}" name="cep" [(ngModel)]="cep"
+        <ion-input type="text" [brmasker]="{mask:'00000-000', len:9}" formControlName="cep" name="cep" [(ngModel)]="cep"
                    required></ion-input>
       </ion-item>
-  </ion-list>
-
+    </ion-list>
+  </form>
 </ion-content>
 
 <ion-footer>
-  <button ion-button full class="full-button" icon-right (click)="verifyZipCode()">
+  <button ion-button full class="full-button" icon-right (click)="verifyZipCode()" [disabled]="!zipCode.valid">
     Verificar disponibilidade de entrega
     <ion-icon name="checkmark-circle-outline"></ion-icon>
   </button>

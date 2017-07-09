@@ -7,6 +7,7 @@ import {Http} from "@angular/http";
 import {NumberValidator} from "../../validators/number";
 import {TabsPage} from "../../pages/tabs/tabs";
 import {splitAtColon} from "@angular/compiler/src/util";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 /**
  * Generated class for the PaymentFormOnlineComponent component.
@@ -43,7 +44,30 @@ export class PaymentFormOnlineComponent {
 
   private loader;
 
-  private urlOrder = "http://web-api.files-app.ga/public/payment";
+  constructor(private http: Http,
+              private user: User,
+              private loadingCtrl: LoadingController,
+              private alertCtrl: AlertController,
+              private formBuilder: FormBuilder,
+              private urlServe:UrlServeProvider,
+              public cart: SharedCartServiceProvider,
+              public navCtrl: NavController,
+              public navParams: NavParams) {
+    console.log('Hello PaymentFormOnlineComponent Component');
+
+    this.finishPayment = this.formBuilder.group({
+      street: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+      number: ['', Validators.compose([Validators.required, NumberValidator.isValid])],
+      neighborhood: ['', Validators.required],
+      code: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+
+      numberCard: ['', Validators.compose([Validators.required, NumberValidator.isValid])],
+      name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+      month: ['', Validators.required],
+      year: ['', Validators.required],
+      cvv: ['', Validators.compose([Validators.required, NumberValidator.isValid])],
+    });
+  }
 
   ngOnInit(): void {
     let loader = this.loadingCtrl.create({
@@ -64,35 +88,7 @@ export class PaymentFormOnlineComponent {
         this.showAlert('Não foi possivel carregar o endereço');
       }
     );
-
     this.shoppingCart = this.cart.cart;
-
-
-  }
-
-  constructor(private http: Http,
-              private user: User,
-              private loadingCtrl: LoadingController,
-              private alertCtrl: AlertController,
-              private formBuilder: FormBuilder,
-              public cart: SharedCartServiceProvider,
-              public navCtrl: NavController,
-              public navParams: NavParams) {
-    console.log('Hello PaymentFormOnlineComponent Component');
-
-    this.finishPayment = this.formBuilder.group({
-      street: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-      number: ['', Validators.compose([Validators.required, NumberValidator.isValid])],
-      neighborhood: ['', Validators.required],
-      code: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-
-      numberCard: ['', Validators.compose([Validators.required, NumberValidator.isValid])],
-      name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-      month: ['', Validators.required],
-      year: ['', Validators.required],
-      cvv: ['', Validators.compose([Validators.required, NumberValidator.isValid])],
-    });
-
   }
 
   private pagarmeHash() {
@@ -162,12 +158,13 @@ export class PaymentFormOnlineComponent {
         token_card: token
       };
 
-      this.http.post(this.urlOrder, params).map(res => res.json()).subscribe(
+      this.http.post(this.urlServe.urlPayment, params).map(res => res.json()).subscribe(
         data => {
           console.log(data);
           this.cart.clear();
           this.loader.dismiss();
           this.showAlert('Pedido realizado com sucesso!');
+          this.cart.clear();
           this.navCtrl.setRoot(TabsPage);
         },
         err => {

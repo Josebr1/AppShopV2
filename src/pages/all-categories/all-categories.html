@@ -12,16 +12,25 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
+      pullingText="Puxe para atualizar"
       refreshingSpinner="circles"
-      refreshingText="Refreshing...">
+      refreshingText="Atualizando...">
     </ion-refresher-content>
   </ion-refresher>
 
+  <div *ngIf="isShow(); then allCategory else networking">
+    {{isShow()}}
+  </div>
 
-  <ion-card *ngFor="let item of allCategories" (click)="onClickCategory(item.id_category, item.name)">
-    <img class="card-img" src="http://site.files-app.ga/{{item.icon}}"/>
-    <div class="card-title">{{item.name}}</div>
-  </ion-card>
+  <template #allCategory>
+    <ion-card *ngFor="let item of allCategories" (click)="onClickCategory(item.id_category, item.name)" class="secondary">
+      <img class="card-img" src="{{urlServe.urlPhoto + item.icon}}"/>
+      <div class="card-title">{{item.name}}</div>
+    </ion-card>
+  </template>
+
+  <template #networking>
+    <not-networking></not-networking>
+  </template>
 
 </ion-content>

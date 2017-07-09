@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AlertController, App, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {ProductDetailPage} from "../product-detail/product-detail";
+import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ export class CategoryPage implements OnInit {
               private http: Http,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
+              private urlServe: UrlServeProvider,
               private app: App) {
     this.nameCategory = navParams.get('name');
   }
@@ -33,9 +35,9 @@ export class CategoryPage implements OnInit {
     });
 
     loader.present();
-    let url = "http://web-api.files-app.ga/public/product/category/";
+    //let url = "http://web-api.files-app.ga/public/product/category/";
     let idCategory = this.navParams.get('idCategory');
-    return this.http.get(url + idCategory).map(res => res.json()).subscribe(
+    return this.http.get(this.urlServe.urlProductCategory + idCategory).map(res => res.json()).subscribe(
       data => {
         if (!data) {
           this.showAlert();
@@ -52,6 +54,11 @@ export class CategoryPage implements OnInit {
     );
   }
 
+  doRefresh(refresher) {
+    this.getService();
+    refresher.complete();
+  }
+
   showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Atenção',
@@ -61,17 +68,17 @@ export class CategoryPage implements OnInit {
     alert.present();
   }
 
-  onClickProductDetail(id, name){
+  onClickProductDetail(id, name) {
     this.app.getRootNav().push(ProductDetailPage, {
       idProduct: id,
       name: name
     })
   }
 
-  isShow(){
-    if(this.categoryProducts == null){
+  isShow() {
+    if (this.categoryProducts == null) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }

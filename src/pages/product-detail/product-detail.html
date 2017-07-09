@@ -6,36 +6,43 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
+      pullingText="Puxe para atualizar"
       refreshingSpinner="circles"
-      refreshingText="Refreshing...">
+      refreshingText="Atualizando...">
     </ion-refresher-content>
   </ion-refresher>
 
-
-  <div *ngFor="let item of productDetails">
-    <ion-list>
-      <ion-item>
-        <ion-card style="width: 100%; margin: 0;">
-          <img src="http://site.files-app.ga/{{item.product_image}}"/>
-          <ion-card-content>
-          </ion-card-content>
-        </ion-card>
-      </ion-item>
-    </ion-list>
-
-    <ion-item-group>
-      <ion-item-divider color="light">{{item.name}}</ion-item-divider>
-      <ion-item>{{item.description}}</ion-item>
-      <ion-item>R$ {{item.price}}</ion-item>
-    </ion-item-group>
-
-    <button ion-button clear (click)="onClickProductCart(item.id_product, item.product_image, item.name, item.description, item.price, 1)">Comprar</button>
-
+  <div *ngIf="isShow(); then productDetailsTemplate else networking">
+    {{isShow()}}
   </div>
+
+  <template #productDetailsTemplate>
+    <div *ngFor="let item of productDetails">
+      <ion-list>
+        <ion-item>
+          <ion-card style="width: 100%; margin: 0;">
+            <img src="{{urlServe.urlPhoto + item.product_image}}" style="width: 100%;"/>
+            <ion-card-content>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+
+      <ion-item-group style="width: 100%; margin: 0;">
+        <ion-item-divider color="light">{{item.name}}</ion-item-divider>
+        <ion-item>{{item.description}}</ion-item>
+        <ion-item>R$ {{ item.price | number : '2.2-2' }}</ion-item>
+      </ion-item-group>
+      <button ion-button clear (click)="onClickProductCart(item.id_product, item.product_image, item.name, item.description, item.price, 1)">Comprar</button>
+    </div>
+  </template>
+
+  <template #networking>
+    <not-networking></not-networking>
+  </template>
 </ion-content>
