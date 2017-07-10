@@ -88,7 +88,7 @@ export class SignUpPage {
         err => {
           loader.dismiss();
           console.log(err);
-          this.showAlert(err);
+          this.showAlert('Erro ao cadastrar usuário');
         }
       );
     }, (err: IDetailedError<string[]>) => {

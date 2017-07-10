@@ -96,7 +96,7 @@ export class SignInPage implements OnInit {
         data => {
           console.log(data);
           loader.dismiss();
-          this.showAlert('Usuário cadastrado com sucesso!');
+         // this.showAlert('Usuário cadastrado com sucesso!');
           this.navCtrl.setRoot(TabsPage);
         },
         err => {
