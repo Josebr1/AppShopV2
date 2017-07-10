@@ -4,14 +4,6 @@ import {Http} from "@angular/http";
 import {ChoosePaymentMethodPage} from "../choose-payment-method/choose-payment-method";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ZipCodeValidator} from "../../validators/zip-code";
-import {Directive} from 'ionic2-text-mask'
-
-/**
- * Generated class for the VerifyZipCodePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 declare var google;
 

@@ -2,16 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AlertController, LoadingController, NavController, NavParams} from "ionic-angular";
 import {Http} from "@angular/http";
-import {UserNameValidator} from "../../validators/user-name";
-import {PhoneValidator} from "../../validators/phone";
-import {EmailValidator} from "../../validators/email";
-import {PasswordValidator} from "../../validators/password";
 import {NumberValidator} from "../../validators/number";
 import {SharedCartServiceProvider} from "../../providers/shared-cart-service/shared-cart-service";
-import {Auth, User} from "@ionic/cloud-angular";
-import {HomePage} from "../../pages/home/home";
 import {TabsPage} from "../../pages/tabs/tabs";
 import {UrlServeProvider} from "../../providers/url-serve/url-serve";
+import {User} from "@ionic/cloud-angular";
 
 /**
  * Generated class for the PaymentFormDeliveryComponent component.
@@ -62,7 +57,6 @@ export class PaymentFormDeliveryComponent implements OnInit{
   }
 
   constructor(private http: Http,
-              private auth: Auth,
               private user: User,
               private urlServe:UrlServeProvider,
               private loadingCtrl: LoadingController,
@@ -122,13 +116,13 @@ export class PaymentFormDeliveryComponent implements OnInit{
           console.log(data);
           this.cart.clear();
           loader.dismiss();
-          this.showAlert('Pedido realizado com sucesso!');
+          this.showAlert('Pedido realizado com sucesso!\nAcompanhe seu pedido pelo histórico');
           this.navCtrl.setRoot(TabsPage);
         },
         err => {
           loader.dismiss();
           console.log(err);
-          this.showAlert('Erro ao realizar pedido');
+          this.showAlert('Erro ao realizar pedido, tente novamente.');
         }
       );
     }else {

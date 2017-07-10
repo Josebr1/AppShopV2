@@ -9,7 +9,6 @@ import {PasswordValidator} from "../../validators/password";
 import {UserNameValidator} from "../../validators/user-name";
 import {SignInPage} from "../sign-in/sign-in";
 import {UrlServeProvider} from "../../providers/url-serve/url-serve";
-import {Directive} from 'ionic2-text-mask'
 
 /**
  * Generated class for the SignUpPage page.
@@ -54,7 +53,6 @@ export class SignUpPage {
     });
   }
 
-  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   onClickSignUpAccountIonic() {
     let loader = this.loadingCtrl.create({
@@ -112,5 +110,4 @@ export class SignUpPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignUpPage');
   }
-
 }

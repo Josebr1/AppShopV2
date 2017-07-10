@@ -1,14 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {FormsModule} from "@angular/forms";
 import {PaymentFormPage} from "../payment-form/payment-form";
 
-/**
- * Generated class for the ChoosePaymentMethodPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-choose-payment-method',

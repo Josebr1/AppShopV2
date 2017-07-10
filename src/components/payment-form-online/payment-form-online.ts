@@ -2,11 +2,10 @@ import {Component} from '@angular/core';
 import {AlertController, LoadingController, NavController, NavParams} from "ionic-angular";
 import {SharedCartServiceProvider} from "../../providers/shared-cart-service/shared-cart-service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Auth, User} from "@ionic/cloud-angular";
+import {User} from "@ionic/cloud-angular";
 import {Http} from "@angular/http";
 import {NumberValidator} from "../../validators/number";
 import {TabsPage} from "../../pages/tabs/tabs";
-import {splitAtColon} from "@angular/compiler/src/util";
 import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 /**
@@ -109,13 +108,23 @@ export class PaymentFormOnlineComponent {
 
     var fieldErrors = creditCard.fieldErrors();
     var errors = [], i = 0;
+    var errorsString = "";
     for (var field in fieldErrors) {
       errors[i++] = field;
+      if(field == 'card_number'){
+        errorsString += "Número do cartão inválido\n";
+      }
+      if(field == 'card_cvv'){
+        errorsString += "Código de Verificação do Cartão inválido\n";
+      }
+      if(field == 'card_holder_name'){
+        errorsString += "Nome do titular inválido\n";
+      }
     }
 
     if (errors.length > 0) {
       this.loader.dismiss();
-      this.showAlert('' + errors);
+      this.showAlert(errorsString);
     } else {
       creditCard.generateHash(cardHash => {
         console.log(cardHash);
@@ -163,14 +172,14 @@ export class PaymentFormOnlineComponent {
           console.log(data);
           this.cart.clear();
           this.loader.dismiss();
-          this.showAlert('Pedido realizado com sucesso!');
+          this.showAlert('Pedido realizado com sucesso!\nAcompanhe seu pedido pelo histórico');
           this.cart.clear();
           this.navCtrl.setRoot(TabsPage);
         },
         err => {
           this.loader.dismiss();
           console.log(err);
-          this.showAlert('Erro ao realizar pedido');
+          this.showAlert('Erro ao realizar pedido, tente outro cartão');
         }
       );
     } else {

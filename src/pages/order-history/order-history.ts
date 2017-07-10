@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {SignInPage} from "../sign-in/sign-in";
 import {User} from "@ionic/cloud-angular";
 import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 

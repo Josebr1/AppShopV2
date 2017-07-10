@@ -8,7 +8,7 @@
         <img src="{{urlServe.urlPhoto + product.product_image}}">
       </ion-thumbnail>
       <h2>{{product.name}}</h2>
-      <p>{{product.price}}</p>
+      <p>R$ {{product.price | number : '2.2-2'}}</p>
     </ion-item>
   </ion-list>
 </ion-card>

@@ -37,7 +37,6 @@ import {OrderHistoryPage} from "../pages/order-history/order-history";
 import {SearchPage} from "../pages/search/search";
 import { UrlServeProvider } from '../providers/url-serve/url-serve';
 import { MaskDirective } from '../directives/mask/mask';
-import {Directive} from 'ionic2-text-mask';
 
 const cloudSettings: CloudSettings = {
   'core': {

@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController, App, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {SharedCartServiceProvider} from "../../providers/shared-cart-service/shared-cart-service";
 import {TabsPage} from "../tabs/tabs";
-import {ShoppingCartPage} from "../shopping-cart/shopping-cart";
 import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 
 @IonicPage()
@@ -14,7 +13,6 @@ import {UrlServeProvider} from "../../providers/url-serve/url-serve";
 export class ProductDetailPage implements OnInit {
 
   productDetails: Array<any>;
-  productCommentary: Array<any>;
   productName = "";
 
   constructor(public navCtrl: NavController,
@@ -22,7 +20,6 @@ export class ProductDetailPage implements OnInit {
               private http: Http,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
-              private app: App,
               private urlServe : UrlServeProvider,
               private cart: SharedCartServiceProvider) {
     this.productName = navParams.get('name');

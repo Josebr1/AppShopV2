@@ -1,16 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController, LoadingController} from 'ionic-angular';
-import {Auth, User} from "@ionic/cloud-angular";
+import {IonicPage, NavController, AlertController, LoadingController} from 'ionic-angular';
+import {Auth} from "@ionic/cloud-angular";
 import {ComfirmPasswordResetPage} from "../comfirm-password-reset/comfirm-password-reset";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EmailValidator} from "../../validators/email";
 
-/**
- * Generated class for the PasswordResetPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-password-reset',
