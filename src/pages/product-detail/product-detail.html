@@ -35,7 +35,7 @@
 
       <ion-item-group style="width: 100%; margin: 0;">
         <ion-item-divider color="light">{{item.name}}</ion-item-divider>
-        <ion-item>{{item.description}}</ion-item>
+        <ion-item><p style="white-space: normal; display: block;">{{item.description}}</p></ion-item>
         <ion-item>R$ {{ item.price | number : '2.2-2' }}</ion-item>
       </ion-item-group>
       <button ion-button clear (click)="onClickProductCart(item.id_product, item.product_image, item.name, item.description, item.price, 1)">Comprar</button>

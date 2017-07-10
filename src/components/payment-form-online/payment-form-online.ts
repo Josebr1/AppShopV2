@@ -173,7 +173,6 @@ export class PaymentFormOnlineComponent {
           this.cart.clear();
           this.loader.dismiss();
           this.showAlert('Pedido realizado com sucesso!\nAcompanhe seu pedido pelo histórico');
-          this.cart.clear();
           this.navCtrl.setRoot(TabsPage);
         },
         err => {

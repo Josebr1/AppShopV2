@@ -69,10 +69,10 @@ export class SharedCartServiceProvider {
   }
 
   clear(){
-    for(var i = 0; i < this.cart.length; i++){
-      this.drop(this.cart[i].cart_item_id);
-      console.log(i);
-    }
+    // Limpando o carrinho de compras
+    this.cart = [];
+    this.totalAquantity = 0;
+    this.totalAmount = parseFloat('0.0');
   }
 
   presentToast(msg, temp) {
@@ -82,5 +82,4 @@ export class SharedCartServiceProvider {
     });
     toast.present();
   }
-
 }
